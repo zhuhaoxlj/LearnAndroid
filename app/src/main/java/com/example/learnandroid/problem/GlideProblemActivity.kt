@@ -24,7 +24,7 @@ class GlideProblemActivity : AppCompatActivity() {
     private lateinit var binding: ActivityGlideProblemBinding
 
     companion object {
-        fun startGlideProblemActivity(context: Context) {
+        fun start(context: Context) {
             val intent = Intent(context, GlideProblemActivity::class.java)
             context.startActivity(intent)
         }

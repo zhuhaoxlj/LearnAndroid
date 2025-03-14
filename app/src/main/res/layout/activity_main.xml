@@ -18,5 +18,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Glide 加载图片失败" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/rb_custom_touch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="自定义触摸反馈" />
     </LinearLayout>
 </layout>
