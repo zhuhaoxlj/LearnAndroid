@@ -25,7 +25,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".problem.GlideProblemActivity" />
-        <activity android:name=".rwx.ViewTouchActivity" />
+        <activity android:name=".ViewTouchActivity" />
     </application>
 
 </manifest>

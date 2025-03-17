@@ -1,4 +1,4 @@
-package com.example.learnandroid.rwx
+package com.example.learnandroid
 
 import android.content.Context
 import android.content.Intent
@@ -14,6 +14,8 @@ import com.example.learnandroid.utils.ToastUtils
  * @date  22:09
  **/
 class ViewTouchActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityViewTouchBinding
+
     companion object {
         fun start(context: Context) {
             val intent = Intent(context, ViewTouchActivity::class.java)
@@ -21,7 +23,6 @@ class ViewTouchActivity : AppCompatActivity() {
         }
     }
 
-    private lateinit var binding: ActivityViewTouchBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityViewTouchBinding.inflate(layoutInflater)
@@ -31,7 +32,7 @@ class ViewTouchActivity : AppCompatActivity() {
 
     private fun initView() {
         binding.view.setOnClickListener {
-            ToastUtils.toast(this, "点击")
+            ToastUtils.Companion.toast(this, "点击")
         }
     }
 }

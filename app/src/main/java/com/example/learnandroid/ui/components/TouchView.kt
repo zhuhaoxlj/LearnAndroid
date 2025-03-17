@@ -1,4 +1,4 @@
-package com.example.learnandroid.view
+package com.example.learnandroid.ui.components
 
 import android.content.Context
 import android.util.AttributeSet
