@@ -20,11 +20,11 @@ import com.example.learnandroid.utils.pxToDp
  **/
 
 @Composable
-fun FakeStatusBar(color: Color) {
+fun FakeStatusBar(color: Color? = null) {
     val statusBarHeight = WindowInsets.statusBars.getTop(LocalDensity.current).pxToDp()
     Spacer(
         modifier = Modifier
-            .background(color)
+            .background(color ?: Color.Transparent)
             .height(statusBarHeight)
             .fillMaxWidth()
     )

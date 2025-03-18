@@ -27,6 +27,9 @@
         <activity android:name=".problem.GlideProblemActivity" />
         <activity android:name=".ViewTouchActivity" />
         <activity android:name=".demo.ChatDemoActivity" />
+        <activity
+            android:name=".demo.LifecycleDemoActivity"
+            android:exported="false" />
     </application>
 
 </manifest>
