@@ -1,5 +1,6 @@
 package com.example.learnandroid
 
+import android.graphics.Color
 import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
@@ -15,18 +16,23 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.lifecycle.ProcessLifecycleOwner
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.learnandroid.databinding.ActivityMainBinding
 import com.example.learnandroid.problem.GlideProblemActivity
 import com.example.learnandroid.ui.components.CustomAppBottomBar
+import com.example.learnandroid.ui.components.FakeStatusBar
 import com.example.learnandroid.ui.screens.ChatList
 import com.example.learnandroid.ui.theme.LearnAndroidTheme
+import com.example.learnandroid.utils.BarUtils
 import com.example.learnandroid.vm.LearnAndroidVM
 import com.example.learnandroid.vm.MainVM
 import kotlinx.coroutines.launch
 
+
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
+    private lateinit var lifecycleObserver: MyLifecycleObserver
 
     private val wishViewModel: MainVM by viewModels()
     private val viewModel: LearnAndroidVM by viewModels()
@@ -34,7 +40,14 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 //        initTraditionalView()
+        BarUtils.setStatusBarColor(this, Color.TRANSPARENT)
+        BarUtils.setStatusBarLightMode(this, true)
+        ProcessLifecycleOwner.get().lifecycle.addObserver(ApplicationLifecycleObserver())
         initComposeView()
+
+        // 创建并添加 LifecycleObserver
+        lifecycleObserver = MyLifecycleObserver()
+        lifecycle.addObserver(lifecycleObserver)
     }
 
     private fun initComposeView() {
@@ -65,6 +78,7 @@ private fun HomePage() {
     Column {
         val viewModel: LearnAndroidVM = viewModel()
         val pagerState = rememberPagerState { 4 } // 初始页面数为4
+        FakeStatusBar(LearnAndroidTheme.themeColors.listItem)
         HorizontalPager(
             state = pagerState,  // 必须传递 state
             Modifier.weight(1f)
@@ -76,7 +90,7 @@ private fun HomePage() {
             }
         }
         val scope = rememberCoroutineScope() // 创建 CoroutineScope
-        CustomAppBottomBar(viewModel.selectedTab) { page ->
+        CustomAppBottomBar(pagerState.currentPage) { page ->
             // 点击页签后，在协程里翻页
             scope.launch {
                 pagerState.animateScrollToPage(page)

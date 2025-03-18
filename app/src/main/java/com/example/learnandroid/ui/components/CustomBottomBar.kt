@@ -23,16 +23,16 @@ import com.example.learnandroid.ui.theme.LearnAndroidTheme.themeColors
 fun CustomAppBottomBar(selected: Int, onSelectedChange: (Int) -> Unit) {
     Row(Modifier.background(LearnAndroidTheme.themeColors.bottomBar)) {
         CustomTabItem(
-            if (selected == 0) R.drawable.ic_contacts_filled else R.drawable.ic_contacts_outlined,
-            "我的",
+            if (selected == 0) R.drawable.ic_chat_filled else R.drawable.ic_chat_outlined,
+            "聊天",
             if (selected == 0) themeColors.iconCurrent else themeColors.icon,
             modifier = Modifier
                 .weight(1f)
                 .clickable { onSelectedChange(0) }
         )
         CustomTabItem(
-            if (selected == 1) R.drawable.ic_chat_filled else R.drawable.ic_chat_outlined,
-            "我的",
+            if (selected == 1) R.drawable.ic_contacts_filled else R.drawable.ic_contacts_outlined,
+            "联系人",
             if (selected == 1) themeColors.iconCurrent else themeColors.icon,
             modifier = Modifier
                 .weight(1f)

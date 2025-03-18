@@ -2,6 +2,7 @@ package com.example.learnandroid.ui.screens
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -19,10 +20,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.learnandroid.bean.Chat
+import com.example.learnandroid.ui.components.TitleBar
 import com.example.learnandroid.ui.theme.LearnAndroidTheme
 import com.example.learnandroid.utils.unRead
 import com.example.learnandroid.vm.LearnAndroidVM
@@ -38,6 +42,11 @@ fun ChatList(chatList: List<Chat>) {
             .fillMaxSize()
             .background(LearnAndroidTheme.themeColors.background)
     ) {
+        TitleBar(
+            title = "首页",
+            backgroundColor = LearnAndroidTheme.themeColors.listItem,
+            titleColor = LearnAndroidTheme.themeColors.textPrimary
+        )
         Box(Modifier.background(LearnAndroidTheme.themeColors.listItem)) {
             LazyColumn {
                 items(chatList.size) { index ->
@@ -58,10 +67,14 @@ fun ChatList(chatList: List<Chat>) {
 
 @Composable
 fun ChatItem(chat: Chat) {
+    val context = LocalContext.current
     Row(
         modifier = Modifier
             .fillMaxWidth()
             .height(60.dp)
+            .clickable {
+                ChatPageActivity.start(context)
+            }
     ) {
         Image(
             painter = painterResource(chat.friend.avatar),
@@ -80,7 +93,12 @@ fun ChatItem(chat: Chat) {
             verticalArrangement = Arrangement.SpaceBetween
         ) {
             Text(text = chat.friend.name)
-            Text(text = chat.msgs.last().text, modifier = Modifier.padding(bottom = 2.dp))
+            Text(
+                text = chat.msgs.last().text,
+                maxLines = 1,
+                overflow = TextOverflow.Ellipsis,
+                modifier = Modifier.padding(bottom = 2.dp, end = 10.dp)
+            )
         }
     }
 }
