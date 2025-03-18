@@ -27,7 +27,5 @@ fun FakeStatusBar(color: Color) {
             .background(color)
             .height(statusBarHeight)
             .fillMaxWidth()
-            // 根据需求设置颜色，例如透明或与状态栏一致
-            .background(Color.Transparent)
     )
 }

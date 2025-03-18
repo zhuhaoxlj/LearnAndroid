@@ -11,7 +11,6 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
@@ -36,15 +35,15 @@ import com.example.learnandroid.ui.theme.LearnAndroidTheme
 fun CommunityScreen() {
     Column(modifier = Modifier.fillMaxSize()) {
         // Immersive status bar with different color for this screen
-        FakeStatusBar(color = Color(0xFF3F51B5))
-        
+        FakeStatusBar(Color(0xFF3F51B5))
+
         // Title bar with different color
         TitleBar(
             title = "社区",
             backgroundColor = Color(0xFF3F51B5),
             titleColor = Color.White
         )
-        
+
         // Community content
         LazyColumn(
             modifier = Modifier
@@ -99,7 +98,7 @@ fun CommunityPost(
                         modifier = Modifier.padding(start = 50.dp)
                     )
                 }
-                
+
                 // Time posted
                 Text(
                     text = timePosted,
@@ -108,7 +107,7 @@ fun CommunityPost(
                     modifier = Modifier.align(Alignment.CenterEnd)
                 )
             }
-            
+
             // Post content
             Text(
                 text = content,

@@ -8,7 +8,6 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
@@ -18,7 +17,6 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.KeyboardArrowRight
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
-import androidx.compose.material3.Divider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -40,19 +38,19 @@ import com.example.learnandroid.ui.theme.LearnAndroidTheme
 @Composable
 fun ProfileScreen() {
     Column(modifier = Modifier.fillMaxSize()) {
-        // Immersive status bar with a third different color
         FakeStatusBar(color = Color(0xFF009688))
-        
+
         // Title bar
         TitleBar(
+            showDivider = false,
             title = "我的",
             backgroundColor = Color(0xFF009688),
             titleColor = Color.White
         )
-        
+
         // Profile header
         ProfileHeader()
-        
+
         // Profile menu items
         ProfileMenuItem(title = "我的学习记录", subtitle = "查看您的学习进度")
         ProfileMenuItem(title = "我的收藏", subtitle = "您收藏的Android学习资源")
@@ -85,7 +83,7 @@ fun ProfileHeader() {
                     .clip(CircleShape)
                     .background(MaterialTheme.colorScheme.primary)
             )
-            
+
             // Username
             Text(
                 text = "Android 学习者",
@@ -94,7 +92,7 @@ fun ProfileHeader() {
                 fontWeight = FontWeight.Bold,
                 modifier = Modifier.padding(top = 8.dp)
             )
-            
+
             // User level
             Text(
                 text = "学习等级: 初级开发者",
@@ -134,9 +132,9 @@ fun ProfileMenuItem(title: String, subtitle: String) {
                     modifier = Modifier.padding(top = 4.dp)
                 )
             }
-            
+
             Spacer(modifier = Modifier.width(8.dp))
-            
+
             Icon(
                 imageVector = Icons.Default.KeyboardArrowRight,
                 contentDescription = "Navigate",

@@ -2,10 +2,12 @@ package com.example.learnandroid
 
 import android.graphics.Color
 import android.os.Bundle
+import android.view.WindowManager
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.material3.MaterialTheme
@@ -14,6 +16,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.core.view.WindowCompat
 import androidx.lifecycle.ProcessLifecycleOwner
 import com.example.learnandroid.ui.components.CustomAppBottomBar
 import com.example.learnandroid.ui.screens.CommunityScreen
@@ -40,7 +43,13 @@ class MainActivity : AppCompatActivity() {
         // 设置透明状态栏，实现沉浸式效果
         BarUtils.setStatusBarColor(this, Color.TRANSPARENT)
         BarUtils.setStatusBarLightMode(this, true)
-
+        
+        // 告诉系统我们的内容要延伸到系统栏区域
+        WindowCompat.setDecorFitsSystemWindows(window, false)
+        
+        // 确保状态栏是透明的
+        window.statusBarColor = Color.TRANSPARENT
+        
         setContent {
             LearnAndroidTheme {
                 Surface(
@@ -56,10 +65,8 @@ class MainActivity : AppCompatActivity() {
 
 @Composable
 fun MainScreen() {
-    Column {
-        val pagerState = rememberPagerState(initialPage = 0) { 3 }
-        
-        // Content pages with HorizontalPager
+    val pagerState = rememberPagerState(initialPage = 0) { 3 }
+    Column(modifier = Modifier.fillMaxSize()) {
         HorizontalPager(
             state = pagerState,
             modifier = Modifier.weight(1f)
@@ -70,7 +77,7 @@ fun MainScreen() {
                 2 -> ProfileScreen()
             }
         }
-        
+
         // Bottom navigation bar
         val scope = rememberCoroutineScope()
         CustomAppBottomBar(pagerState.currentPage) { page ->

@@ -9,6 +9,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -28,7 +29,7 @@ data class LearningItem(
 @Composable
 fun LearningScreen() {
     val context = LocalContext.current
-    
+
     // Demo items
     val learningItems = listOf(
         LearningItem(
@@ -47,18 +48,17 @@ fun LearningScreen() {
             { ViewTouchActivity.start(context) }
         )
     )
-    
+
     Column(modifier = Modifier.fillMaxSize()) {
-        // Immersive status bar
-        FakeStatusBar(color = LearnAndroidTheme.themeColors.listItem)
-        
+        FakeStatusBar(color = Color(0xFFFFFFFF))
+
         // Title bar
         TitleBar(
             title = "学习",
             backgroundColor = LearnAndroidTheme.themeColors.listItem,
             titleColor = LearnAndroidTheme.themeColors.textPrimary
         )
-        
+
         // Content
         LazyColumn(
             modifier = Modifier
@@ -72,7 +72,7 @@ fun LearningScreen() {
                     modifier = Modifier.padding(bottom = 16.dp)
                 )
             }
-            
+
             items(learningItems) { item ->
                 DemoCard(
                     title = item.title,
