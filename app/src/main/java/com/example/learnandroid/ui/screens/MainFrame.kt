@@ -112,7 +112,7 @@ private fun CustomBottomBarPreview() {
 }
 
 @Composable
-fun CustomTabItem(
+fun ChatTabItem(
     @DrawableRes iconId: Int,
     title: String,
     tint: Color,
@@ -126,8 +126,8 @@ fun CustomTabItem(
 
 @Preview(showBackground = true)
 @Composable
-private fun CustomTabItemPreview() {
-    CustomTabItem(
+private fun ChatTabItemPreview() {
+    ChatTabItem(
         R.drawable.ic_me_filled,
         "我的",
         themeColors.iconCurrent,

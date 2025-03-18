@@ -24,7 +24,7 @@ fun CustomAppBottomBar(selected: Int, onSelectedChange: (Int) -> Unit) {
     Row(Modifier.background(LearnAndroidTheme.themeColors.bottomBar)) {
         CustomTabItem(
             if (selected == 0) R.drawable.ic_chat_filled else R.drawable.ic_chat_outlined,
-            "聊天",
+            "学习",
             if (selected == 0) themeColors.iconCurrent else themeColors.icon,
             modifier = Modifier
                 .weight(1f)
@@ -32,7 +32,7 @@ fun CustomAppBottomBar(selected: Int, onSelectedChange: (Int) -> Unit) {
         )
         CustomTabItem(
             if (selected == 1) R.drawable.ic_contacts_filled else R.drawable.ic_contacts_outlined,
-            "联系人",
+            "社区",
             if (selected == 1) themeColors.iconCurrent else themeColors.icon,
             modifier = Modifier
                 .weight(1f)
