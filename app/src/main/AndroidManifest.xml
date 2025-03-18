@@ -26,7 +26,7 @@
         </activity>
         <activity android:name=".problem.GlideProblemActivity" />
         <activity android:name=".ViewTouchActivity" />
-        <activity android:name=".ui.screens.ChatPageActivity" />
+        <activity android:name=".demo.ChatDemoActivity" />
     </application>
 
 </manifest>
