@@ -15,7 +15,6 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.core.view.WindowCompat
-import androidx.lifecycle.ProcessLifecycleOwner
 import com.example.learnandroid.ui.components.CustomAppBottomBar
 import com.example.learnandroid.ui.screens.CommunityScreen
 import com.example.learnandroid.ui.screens.LearningScreen
@@ -28,15 +27,9 @@ import kotlinx.coroutines.launch
  * Android 学习宝典 程序入口
  */
 class MainActivity : AppCompatActivity() {
-    private lateinit var lifecycleObserver: MyLifecycleObserver
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        ProcessLifecycleOwner.get().lifecycle.addObserver(ApplicationLifecycleObserver())
-
-        // 创建并添加 LifecycleObserver
-        lifecycleObserver = MyLifecycleObserver()
-        lifecycle.addObserver(lifecycleObserver)
 
         // 设置透明状态栏，实现沉浸式效果
         BarUtils.setStatusBarColor(this, Color.TRANSPARENT)

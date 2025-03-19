@@ -15,13 +15,43 @@ import androidx.lifecycle.LifecycleOwner
  *
  * 作用：监听应用程序进入前台或后台
  */
-class ApplicationLifecycleObserver : LifecycleEventObserver {
+class ApplicationLifecycleObserver(
+    private val onEventReceived: (String, String) -> Unit
+) : LifecycleEventObserver {
     val TAG = "ApplicationLifecycleObserver"
 
     override fun onStateChanged(source: LifecycleOwner, event: Lifecycle.Event) {
         when (event) {
-            Lifecycle.Event.ON_START -> Log.w(TAG, "ApplicationObserver: app moved to foreground")
-            Lifecycle.Event.ON_STOP -> Log.w(TAG, "ApplicationObserver: app moved to background")
+            Lifecycle.Event.ON_CREATE -> {
+                Log.w(TAG, "ApplicationObserver: app created")
+                onEventReceived("Application Created", "APP")
+            }
+
+            Lifecycle.Event.ON_START -> {
+                Log.w(TAG, "ApplicationObserver: app moved to foreground")
+                onEventReceived("Application moved to foreground", "APP")
+            }
+
+            Lifecycle.Event.ON_RESUME -> {
+                Log.w(TAG, "ApplicationObserver: app resumed")
+                onEventReceived("Application resumed", "APP")
+            }
+
+            Lifecycle.Event.ON_PAUSE -> {
+                Log.w(TAG, "ApplicationObserver: app paused")
+                onEventReceived("Application paused", "APP")
+            }
+
+            Lifecycle.Event.ON_STOP -> {
+                Log.w(TAG, "ApplicationObserver: app moved to background")
+                onEventReceived("Application moved to background", "APP")
+            }
+
+            Lifecycle.Event.ON_DESTROY -> {
+                Log.w(TAG, "ApplicationObserver: app destroyed")
+                onEventReceived("Application destroyed", "APP")
+            }
+
             else -> {}
         }
     }
