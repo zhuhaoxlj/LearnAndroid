@@ -10,6 +10,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.platform.LocalInspectionMode
+import androidx.compose.ui.unit.dp
 import com.example.learnandroid.utils.pxToDp
 
 /**
@@ -21,7 +23,12 @@ import com.example.learnandroid.utils.pxToDp
 
 @Composable
 fun FakeStatusBar(color: Color? = null) {
-    val statusBarHeight = WindowInsets.statusBars.getTop(LocalDensity.current).pxToDp()
+    val isPreviewMode = LocalInspectionMode.current
+    val statusBarHeight = if (isPreviewMode) {
+        32.dp // 预览模式下固定为32dp
+    } else {
+        WindowInsets.statusBars.getTop(LocalDensity.current).pxToDp()
+    }
     Spacer(
         modifier = Modifier
             .background(color ?: Color.Transparent)

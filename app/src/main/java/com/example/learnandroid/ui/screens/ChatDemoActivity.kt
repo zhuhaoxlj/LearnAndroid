@@ -1,4 +1,4 @@
-package com.example.learnandroid.demo
+package com.example.learnandroid.ui.screens
 
 import android.content.Context
 import android.content.Intent
@@ -14,9 +14,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.learnandroid.ui.components.CustomAppBottomBar
 import com.example.learnandroid.ui.components.FakeStatusBar
-import com.example.learnandroid.ui.screens.ChatList
 import com.example.learnandroid.ui.theme.LearnAndroidTheme
 import com.example.learnandroid.utils.BarUtils
 import com.example.learnandroid.vm.LearnAndroidVM
@@ -51,7 +51,7 @@ class ChatDemoActivity : AppCompatActivity() {
 @Composable
 private fun ChatDemoPage() {
     Column {
-        val viewModel: LearnAndroidVM = androidx.lifecycle.viewmodel.compose.viewModel()
+        val viewModel: LearnAndroidVM = viewModel()
         val pagerState = rememberPagerState { 4 }
         FakeStatusBar(LearnAndroidTheme.themeColors.listItem)
         HorizontalPager(

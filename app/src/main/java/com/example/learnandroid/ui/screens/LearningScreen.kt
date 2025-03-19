@@ -12,8 +12,6 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.learnandroid.ViewTouchActivity
-import com.example.learnandroid.demo.ChatDemoActivity
-import com.example.learnandroid.demo.LifecycleDemoActivity
 import com.example.learnandroid.problem.GlideProblemActivity
 import com.example.learnandroid.ui.components.FakeStatusBar
 import com.example.learnandroid.ui.components.TitleBar

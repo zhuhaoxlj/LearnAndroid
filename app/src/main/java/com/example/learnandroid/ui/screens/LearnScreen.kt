@@ -13,7 +13,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import com.example.learnandroid.demo.ChatDemoActivity
 import com.example.learnandroid.problem.GlideProblemActivity
 import com.example.learnandroid.ui.components.FakeStatusBar
 import com.example.learnandroid.ui.components.TitleBar

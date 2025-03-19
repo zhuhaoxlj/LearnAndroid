@@ -2,12 +2,10 @@ package com.example.learnandroid
 
 import android.graphics.Color
 import android.os.Bundle
-import android.view.WindowManager
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.material3.MaterialTheme
@@ -43,13 +41,13 @@ class MainActivity : AppCompatActivity() {
         // 设置透明状态栏，实现沉浸式效果
         BarUtils.setStatusBarColor(this, Color.TRANSPARENT)
         BarUtils.setStatusBarLightMode(this, true)
-        
+
         // 告诉系统我们的内容要延伸到系统栏区域
         WindowCompat.setDecorFitsSystemWindows(window, false)
-        
+
         // 确保状态栏是透明的
         window.statusBarColor = Color.TRANSPARENT
-        
+
         setContent {
             LearnAndroidTheme {
                 Surface(
