@@ -11,6 +11,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.learnandroid.PointerTestActivity
 import com.example.learnandroid.ViewTouchActivity
 import com.example.learnandroid.problem.GlideProblemActivity
 import com.example.learnandroid.ui.components.FakeStatusBar
@@ -29,6 +30,11 @@ fun LearningScreen() {
 
     // Demo items
     val learningItems = listOf(
+        LearningItem(
+            "指针仪表盘测试",
+            "自定义 PointerView 控件测试界面，可调节角度、半径和图片旋转",
+            { PointerTestActivity.start(context) }
+        ),
         LearningItem(
             "聊天界面 Demo",
             "使用 Jetpack Compose 实现的聊天界面示例",

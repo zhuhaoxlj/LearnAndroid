@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <!-- Container for PointerView -->
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="#EEEEEE">
+
+        <com.example.learnandroid.widget.PointerView
+            android:id="@+id/pointerView"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:background="@color/black"
+            app:pointerAngle="0"
+            app:pointerDrawable="@drawable/ic_zz_zdzb"
+            app:pointerHeight="18.67dp"
+            app:pointerWidth="3dp"
+            app:pointerRadius="150dp"
+             />
+    </FrameLayout>
+
+    <!-- Controls Section -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:orientation="vertical">
+
+        <!-- Angle Control -->
+        <TextView
+            android:id="@+id/textAngle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="角度 (-90° 到 90°): 0°" />
+
+        <SeekBar
+            android:id="@+id/seekBarAngle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:max="180"
+            android:progress="90" />
+
+        <!-- Radius Control -->
+        <TextView
+            android:id="@+id/textRadius"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="半径: 150dp" />
+
+        <SeekBar
+            android:id="@+id/seekBarRadius"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:max="300"
+            android:progress="150" />
+
+        <!-- Pointer Width Control -->
+        <TextView
+            android:id="@+id/textPointerWidth"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="指针宽度: 15dp" />
+
+        <SeekBar
+            android:id="@+id/seekBarPointerWidth"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:max="50"
+            android:progress="15" />
+
+        <!-- Pointer Height Control -->
+        <TextView
+            android:id="@+id/textPointerHeight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="指针高度: 60dp" />
+
+        <SeekBar
+            android:id="@+id/seekBarPointerHeight"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:max="100"
+            android:progress="60" />
+
+        <!-- Angle Offset Control -->
+        <TextView
+            android:id="@+id/textAngleOffset"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="图片旋转角度: 0°" />
+
+        <SeekBar
+            android:id="@+id/seekBarAngleOffset"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:max="360"
+            android:progress="0" />
+    </LinearLayout>
+
+</LinearLayout> 

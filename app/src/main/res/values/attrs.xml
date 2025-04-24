@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Attributes for PointerView -->
+    <declare-styleable name="PointerView">
+        <attr name="pointerRadius" format="dimension" />
+        <attr name="pointerAngle" format="float" />
+        <attr name="centerDotColor" format="color" />
+        <attr name="centerDotRadius" format="dimension" />
+        <attr name="pointerDrawable" format="reference" />
+        <attr name="pointerWidth" format="dimension" />
+        <attr name="pointerHeight" format="dimension" />
+    </declare-styleable>
+</resources>

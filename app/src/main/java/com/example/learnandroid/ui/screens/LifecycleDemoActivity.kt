@@ -151,7 +151,7 @@ class LifecycleDemoViewModel : ViewModel() {
         val currentList = _lifecycleEvents.value ?: listOf()
         _lifecycleEvents.value = currentList + eventLog
     }
-    
+
     // 从事件文本中提取标签
     private fun extractTagFromEvent(event: String): String {
         return when {
@@ -200,7 +200,7 @@ fun LifecycleDemoScreen(viewModel: LifecycleDemoViewModel, lifecycle: Lifecycle,
     val showDialog = remember { mutableStateOf(false) }
     val scope = rememberCoroutineScope()
     val lazyListState = rememberLazyListState()
-    
+
     // 使用DisposableEffect监听生命周期变化
     DisposableEffect(key1 = lifecycle) {
         val observer = LifecycleEventObserver { _, event ->
