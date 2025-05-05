@@ -228,59 +228,96 @@ fun LifecycleDemoScreen(viewModel: LifecycleDemoViewModel, lifecycle: Lifecycle,
             titleColor = LearnAndroidTheme.themeColors.textPrimary
         )
 
-        Column(modifier = Modifier.padding(16.dp)) {
-            Card(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(bottom = 16.dp),
-            ) {
-                Column(modifier = Modifier.padding(16.dp)) {
-                    Text(
-                        text = "当前生命周期状态",
-                        style = MaterialTheme.typography.titleMedium,
-                        fontWeight = FontWeight.Bold
-                    )
-                    Spacer(modifier = Modifier.height(8.dp))
-                    Text(text = "State: ${currentState.value}")
+        LazyColumn(
+            state = lazyListState,
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(horizontal = 16.dp)
+        ) {
+            item {
+                Card(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(bottom = 16.dp),
+                ) {
+                    Column(modifier = Modifier.padding(16.dp)) {
+                        Text(
+                            text = "当前生命周期状态",
+                            style = MaterialTheme.typography.titleMedium,
+                            fontWeight = FontWeight.Bold
+                        )
+                        Spacer(modifier = Modifier.height(8.dp))
+                        Text(text = "State: ${currentState.value}")
+                    }
                 }
             }
-            LifecycleOperateCard(scope, viewModel, showDialog)
-            Card(
-                modifier = Modifier.fillMaxWidth(),
-            ) {
-                Column(modifier = Modifier.padding(16.dp)) {
-                    Text(
-                        text = "生命周期事件日志",
-                        style = MaterialTheme.typography.titleMedium,
-                        fontWeight = FontWeight.Bold
-                    )
-                    Spacer(modifier = Modifier.height(8.dp))
 
-                    LazyColumn(
-                        state = lazyListState
-                    ) {
-                        items(lifecycleEvents.size) { index ->
-                            val event = lifecycleEvents[index]
-                            val color = getColorForTag(event.tag)
-                            Text(
-                                text = "• ${event.message}",
-                                fontSize = 12.sp,
-                                color = color,
-                                modifier = Modifier.padding(vertical = 4.dp)
-                            )
-                        }
-                    }
+            item {
+                LifecycleOperateCard(scope, viewModel, showDialog)
+            }
 
-                    // 当列表数据更新时，自动滚动到底部
-                    LaunchedEffect(lifecycleEvents) {
-                        if (lifecycleEvents.isNotEmpty()) {
-                            lazyListState.animateScrollToItem(lifecycleEvents.size - 1)
+            item {
+                Card(
+                    modifier = Modifier.fillMaxWidth(),
+                ) {
+                    Column(modifier = Modifier.padding(16.dp)) {
+                        Text(
+                            text = "生命周期事件日志",
+                            style = MaterialTheme.typography.titleMedium,
+                            fontWeight = FontWeight.Bold
+                        )
+                        Spacer(modifier = Modifier.height(8.dp))
+
+                        Column {
+                            lifecycleEvents.forEach { event ->
+                                val color = getColorForTag(event.tag)
+                                Text(
+                                    text = "• ${event.message}",
+                                    fontSize = 12.sp,
+                                    color = color,
+                                    modifier = Modifier.padding(vertical = 4.dp)
+                                )
+                            }
                         }
                     }
                 }
             }
         }
+    }
 
+    // 当列表数据更新时，自动滚动到底部
+    LaunchedEffect(lifecycleEvents) {
+        if (lifecycleEvents.isNotEmpty()) {
+            lazyListState.animateScrollToItem(lifecycleEvents.size - 1)
+        }
+    }
+
+    // 当 showDialog 为 true 时，显示对话框
+    if (showDialog.value) {
+        AlertDialog(
+            onDismissRequest = {
+                // 点击对话框外部时，关闭对话框
+                showDialog.value = false
+            },
+            title = { Text("对话框标题") },
+            text = { Text("这是一个 Dialog 示例") },
+            confirmButton = {
+                TextButton(onClick = {
+                    // 确认按钮点击处理
+                    showDialog.value = false
+                }) {
+                    Text("确认")
+                }
+            },
+            dismissButton = {
+                TextButton(onClick = {
+                    // 取消按钮点击处理
+                    showDialog.value = false
+                }) {
+                    Text("取消")
+                }
+            }
+        )
     }
 }
 
@@ -325,33 +362,6 @@ private fun LifecycleOperateCard(
                 Text("弹出 Dialog")
             }
         }
-    }
-    // 当 showDialog 为 true 时，显示对话框
-    if (showDialog.value) {
-        AlertDialog(
-            onDismissRequest = {
-                // 点击对话框外部时，关闭对话框
-                showDialog.value = false
-            },
-            title = { Text("对话框标题") },
-            text = { Text("这是一个 Dialog 示例") },
-            confirmButton = {
-                TextButton(onClick = {
-                    // 确认按钮点击处理
-                    showDialog.value = false
-                }) {
-                    Text("确认")
-                }
-            },
-            dismissButton = {
-                TextButton(onClick = {
-                    // 取消按钮点击处理
-                    showDialog.value = false
-                }) {
-                    Text("取消")
-                }
-            }
-        )
     }
 }
 

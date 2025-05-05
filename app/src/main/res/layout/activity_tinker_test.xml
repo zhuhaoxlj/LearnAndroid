@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    tools:context=".TinkerTestActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tinker热修复测试"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="20dp"/>
+
+    <TextView
+        android:id="@+id/tv_tinker_id"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Tinker ID: 未知"
+        android:textSize="16sp"
+        android:layout_marginBottom="20dp"/>
+
+    <Button
+        android:id="@+id/btn_load_patch"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="加载补丁"
+        android:layout_marginTop="10dp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="注意：补丁文件应放在应用的外部存储目录下的tinker文件夹中，并命名为patch.apk"
+        android:layout_marginTop="20dp"
+        android:textSize="14sp"/>
+
+</LinearLayout> 

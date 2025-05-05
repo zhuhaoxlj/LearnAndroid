@@ -3,6 +3,7 @@ package com.example.learnandroid
 import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
+import android.widget.Button
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.layout.Column
@@ -15,6 +16,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.viewinterop.AndroidView
 import androidx.core.view.WindowCompat
 import com.example.learnandroid.ui.components.CustomAppBottomBar
 import com.example.learnandroid.ui.screens.CommunityScreen
@@ -51,7 +53,22 @@ class MainActivity : AppCompatActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    MainScreen()
+                    Column(modifier = Modifier.fillMaxSize()) {
+                        // 添加一个按钮用于启动内存泄漏演示
+                        AndroidView(
+                            factory = { context ->
+                                Button(context).apply {
+                                    text = "打开内存泄漏演示"
+                                    setOnClickListener {
+                                        LeakDemoActivity.start(context)
+                                    }
+                                }
+                            }
+                        )
+                        
+                        // 主界面
+                        MainScreen(Modifier.weight(1f))
+                    }
                 }
             }
         }
@@ -74,9 +91,9 @@ class MainActivity : AppCompatActivity() {
 }
 
 @Composable
-fun MainScreen() {
+fun MainScreen(modifier: Modifier = Modifier) {
     val pagerState = rememberPagerState(initialPage = 0) { 3 }
-    Column(modifier = Modifier.fillMaxSize()) {
+    Column(modifier = modifier.fillMaxSize()) {
         HorizontalPager(
             state = pagerState,
             modifier = Modifier.weight(1f)

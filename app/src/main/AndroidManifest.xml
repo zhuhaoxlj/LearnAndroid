@@ -33,6 +33,10 @@
         <activity
             android:name=".ui.screens.LifecycleDemoActivity"
             android:exported="false" />
+        <activity 
+            android:name=".LeakDemoActivity"
+            android:exported="false"
+            android:label="内存泄漏演示" />
     </application>
 
 </manifest>

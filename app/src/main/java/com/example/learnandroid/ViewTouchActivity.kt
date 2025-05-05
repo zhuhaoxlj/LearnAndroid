@@ -13,6 +13,7 @@ import com.example.learnandroid.utils.ToastUtils
  * @author zhuhao
  * @date  22:09
  **/
+@MyBindView
 class ViewTouchActivity : AppCompatActivity() {
     private lateinit var binding: ActivityViewTouchBinding
 

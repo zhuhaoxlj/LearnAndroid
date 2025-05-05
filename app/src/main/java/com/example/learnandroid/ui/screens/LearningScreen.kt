@@ -52,9 +52,12 @@ fun LearningScreen() {
         ),
         LearningItem(
             "Jetpack Lifecycle 演示",
-            "详细全面学习 Android Jetpack Lifecycle 组件的使用",
-            { LifecycleDemoActivity.start(context) }
-        )
+            "详细全面学习 Android Jetpack Lifecycle 组件的使用"
+        ) { LifecycleDemoActivity.start(context) },
+        LearningItem(
+            "玩转 Fragment",
+            "详细全面学习 Android Fragment 组件的使用"
+        ) { LifecycleDemoActivity.start(context) },
     )
 
     Column(modifier = Modifier.fillMaxSize()) {

@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
 }
 
 android {
@@ -79,7 +80,7 @@ dependencies {
 
     // Glide
     implementation 'com.github.bumptech.glide:glide:4.16.0'
-    annotationProcessor 'com.github.bumptech.glide:compiler:4.16.0'
+    kapt 'com.github.bumptech.glide:compiler:4.16.0'
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
 
@@ -105,4 +106,22 @@ dependencies {
 
     // Gson
     implementation 'com.google.code.gson:gson:2.12.1'
+
+    api("com.tencent.tinker:tinker-android-lib:${TINKER_VERSION}") { changing = true }
+
+    // Maven local cannot handle transist dependencies.
+    implementation("com.tencent.tinker:tinker-android-loader:${TINKER_VERSION}") { changing = true }
+
+    kapt("com.tencent.tinker:tinker-android-anno:${TINKER_VERSION}") { changing = true }
+    compileOnly("com.tencent.tinker:tinker-android-anno:${TINKER_VERSION}") { changing = true }
+    compileOnly("com.tencent.tinker:tinker-android-anno-support:${TINKER_VERSION}") { changing = true }
+
+    // LeakCanary 内存泄露检测工具
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.14'
+
+    implementation "androidx.multidex:multidex:2.0.1"
+
+    // 自己的注解模块
+    implementation project(":annotation")
+    kapt project(":annotation_processor")
 }

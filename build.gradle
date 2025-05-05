@@ -1,3 +1,16 @@
+buildscript {
+    repositories {
+        google()
+        mavenCentral()
+        jcenter()
+    }
+
+    dependencies {
+        // Tinker的gradle插件
+        classpath "com.tencent.tinker:tinker-patch-gradle-plugin:1.9.14.16"
+    }
+}
+
 plugins {
     id 'com.android.application' version '8.2.2' apply false
     id 'org.jetbrains.kotlin.android' version '1.9.0' apply false
