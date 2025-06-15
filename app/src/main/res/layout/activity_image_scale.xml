@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ImageScaleActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:padding="16dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="原始图片"
+            android:textStyle="bold"
+            android:layout_marginBottom="8dp"/>
+
+        <ImageView
+            android:id="@+id/originalImageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            android:scaleType="fitCenter"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#CCCCCC"
+            android:layout_marginBottom="16dp"/>
+
+        <!-- 1. centerCrop -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1. centerCrop (居中裁剪)"
+            android:textStyle="bold"
+            android:layout_marginBottom="8dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="保持图片比例，居中裁剪，填充整个区域"
+            android:textSize="12sp"
+            android:layout_marginBottom="8dp"/>
+
+        <ImageView
+            android:id="@+id/centerCropImageView"
+            android:layout_width="125dp"
+            android:layout_height="60dp"
+            android:scaleType="centerCrop"
+            android:background="#EEEEEE"
+            android:layout_marginBottom="24dp"/>
+
+        <!-- 2. fitCenter -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2. fitCenter (适应中心)"
+            android:textStyle="bold"
+            android:layout_marginBottom="8dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="保持图片比例，缩放适应区域，居中显示"
+            android:textSize="12sp"
+            android:layout_marginBottom="8dp"/>
+
+        <ImageView
+            android:id="@+id/fitCenterImageView"
+            android:layout_width="125dp"
+            android:layout_height="60dp"
+            android:scaleType="fitCenter"
+            android:background="#EEEEEE"
+            android:layout_marginBottom="24dp"/>
+
+        <!-- 3. fitXY -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="3. fitXY (拉伸适应)"
+            android:textStyle="bold"
+            android:layout_marginBottom="8dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="不保持图片比例，拉伸填充整个区域"
+            android:textSize="12sp"
+            android:layout_marginBottom="8dp"/>
+
+        <ImageView
+            android:id="@+id/fitXYImageView"
+            android:layout_width="125dp"
+            android:layout_height="60dp"
+            android:scaleType="fitXY"
+            android:background="#EEEEEE"
+            android:layout_marginBottom="24dp"/>
+
+        <!-- 4. center -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="4. center (居中)"
+            android:textStyle="bold"
+            android:layout_marginBottom="8dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="保持原始大小，居中显示，可能裁剪或有空白"
+            android:textSize="12sp"
+            android:layout_marginBottom="8dp"/>
+
+        <ImageView
+            android:id="@+id/centerImageView"
+            android:layout_width="125dp"
+            android:layout_height="60dp"
+            android:scaleType="center"
+            android:background="#EEEEEE"
+            android:layout_marginBottom="24dp"/>
+
+        <!-- 5. centerInside -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="5. centerInside (内部居中)"
+            android:textStyle="bold"
+            android:layout_marginBottom="8dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="保持图片比例，确保图片完全显示，居中显示"
+            android:textSize="12sp"
+            android:layout_marginBottom="8dp"/>
+
+        <ImageView
+            android:id="@+id/centerInsideImageView"
+            android:layout_width="125dp"
+            android:layout_height="60dp"
+            android:scaleType="centerInside"
+            android:background="#EEEEEE"
+            android:layout_marginBottom="24dp"/>
+
+        <!-- 6. fitStart -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="6. fitStart (适应起始)"
+            android:textStyle="bold"
+            android:layout_marginBottom="8dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="保持图片比例，缩放适应区域，靠上/左对齐"
+            android:textSize="12sp"
+            android:layout_marginBottom="8dp"/>
+
+        <ImageView
+            android:id="@+id/fitStartImageView"
+            android:layout_width="125dp"
+            android:layout_height="60dp"
+            android:scaleType="fitStart"
+            android:background="#EEEEEE"
+            android:layout_marginBottom="24dp"/>
+
+        <!-- 7. fitEnd -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="7. fitEnd (适应结尾)"
+            android:textStyle="bold"
+            android:layout_marginBottom="8dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="保持图片比例，缩放适应区域，靠下/右对齐"
+            android:textSize="12sp"
+            android:layout_marginBottom="8dp"/>
+
+        <ImageView
+            android:id="@+id/fitEndImageView"
+            android:layout_width="125dp"
+            android:layout_height="60dp"
+            android:scaleType="fitEnd"
+            android:background="#EEEEEE"
+            android:layout_marginBottom="24dp"/>
+
+        <!-- 8. matrix -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="8. matrix (矩阵变换)"
+            android:textStyle="bold"
+            android:layout_marginBottom="8dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="使用Matrix变换，默认左上角显示，不缩放"
+            android:textSize="12sp"
+            android:layout_marginBottom="8dp"/>
+
+        <ImageView
+            android:id="@+id/matrixImageView"
+            android:layout_width="125dp"
+            android:layout_height="60dp"
+            android:scaleType="matrix"
+            android:background="#EEEEEE"
+            android:layout_marginBottom="8dp"/>
+
+    </LinearLayout>
+
+</ScrollView> 

@@ -37,6 +37,10 @@
             android:name=".LeakDemoActivity"
             android:exported="false"
             android:label="内存泄漏演示" />
+        <activity
+            android:name=".ImageScaleActivity"
+            android:exported="true"
+            android:label="图片裁切拉伸演示" />
     </application>
 
 </manifest>

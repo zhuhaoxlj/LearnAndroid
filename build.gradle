@@ -1,4 +1,17 @@
 buildscript {
+    // 在这里定义项目使用的版本
+    ext {
+        // 定义Kotlin版本
+        kotlin_version = '1.9.0'
+        // 定义Gradle插件版本
+        gradle_plugin_version = '8.2.2'
+        // 定义Java版本
+        java_version = JavaVersion.VERSION_1_8
+        
+        // Tinker版本
+        tinker_version = '1.9.14.16'
+    }
+    
     repositories {
         google()
         mavenCentral()
@@ -7,11 +20,11 @@ buildscript {
 
     dependencies {
         // Tinker的gradle插件
-        classpath "com.tencent.tinker:tinker-patch-gradle-plugin:1.9.14.16"
+        classpath "com.tencent.tinker:tinker-patch-gradle-plugin:${tinker_version}"
     }
 }
 
 plugins {
-    id 'com.android.application' version '8.2.2' apply false
-    id 'org.jetbrains.kotlin.android' version '1.9.0' apply false
+    id 'com.android.application' version "${gradle_plugin_version}" apply false
+    id 'org.jetbrains.kotlin.android' version "${kotlin_version}" apply false
 }

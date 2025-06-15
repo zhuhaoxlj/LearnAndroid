@@ -1,9 +1,11 @@
 package com.example.learnandroid
 
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
+import android.widget.LinearLayout
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.layout.Column
@@ -18,6 +20,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.core.view.WindowCompat
+import com.example.learnandroid.bean.Repo
+import com.example.learnandroid.net.GithubService
 import com.example.learnandroid.ui.components.CustomAppBottomBar
 import com.example.learnandroid.ui.screens.CommunityScreen
 import com.example.learnandroid.ui.screens.LearningScreen
@@ -26,6 +30,11 @@ import com.example.learnandroid.ui.theme.LearnAndroidTheme
 import com.example.learnandroid.utils.BarUtils
 import com.google.gson.Gson
 import kotlinx.coroutines.launch
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 
 /**
  * Android 学习宝典 程序入口
@@ -54,18 +63,33 @@ class MainActivity : AppCompatActivity() {
                     color = MaterialTheme.colorScheme.background
                 ) {
                     Column(modifier = Modifier.fillMaxSize()) {
-                        // 添加一个按钮用于启动内存泄漏演示
+                        // 添加演示按钮布局
                         AndroidView(
                             factory = { context ->
-                                Button(context).apply {
-                                    text = "打开内存泄漏演示"
-                                    setOnClickListener {
-                                        LeakDemoActivity.start(context)
-                                    }
+                                LinearLayout(context).apply {
+                                    orientation = LinearLayout.VERTICAL
+
+                                    // 内存泄漏演示按钮
+                                    addView(Button(context).apply {
+                                        text = "打开内存泄漏演示"
+                                        setOnClickListener {
+                                            LeakDemoActivity.start(context)
+                                        }
+                                    })
+
+                                    // 图片裁切拉伸演示按钮
+                                    addView(Button(context).apply {
+                                        text = "图片裁切拉伸演示"
+                                        setOnClickListener {
+                                            val intent =
+                                                Intent(context, ImageScaleActivity::class.java)
+                                            context.startActivity(intent)
+                                        }
+                                    })
                                 }
                             }
                         )
-                        
+
                         // 主界面
                         MainScreen(Modifier.weight(1f))
                     }
@@ -76,6 +100,25 @@ class MainActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
+        val retrofit = Retrofit.Builder().addConverterFactory(GsonConverterFactory.create())
+            .baseUrl("https://api.github.com/").build()
+        val service = retrofit.create<GithubService>(GithubService::class.java)
+        val repos = service.listRepos("zhuhaoxlj")
+        repos.enqueue(object : Callback<List<Repo>> {
+            override fun onResponse(
+                call: Call<List<Repo>>,
+                response: Response<List<Repo>>
+            ) {
+                println("Response:${response.body()?.getOrNull(0)}")
+            }
+
+            override fun onFailure(
+                call: Call<List<Repo>>,
+                t: Throwable
+            ) {
+                println("Error: ${t.message}")
+            }
+        })
         Log.i(TAG, "onResume")
     }
 

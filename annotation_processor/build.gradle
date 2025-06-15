@@ -11,8 +11,16 @@ kotlin {
     jvmToolchain(11)
 }
 
+// 为kapt指定JVM目标版本
+kapt {
+    javacOptions {
+        option("-source", "11")
+        option("-target", "11")
+    }
+}
+
 dependencies {
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.9.0"
     implementation project(":annotation")
     
     // 添加Google AutoService
