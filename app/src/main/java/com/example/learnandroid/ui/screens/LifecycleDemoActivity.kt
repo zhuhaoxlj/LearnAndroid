@@ -67,6 +67,9 @@ class LifecycleDemoActivity : AppCompatActivity() {
     private val lifecycleObserver = DemoLifecycleObserver()
 
     companion object {
+        // 添加静态标志，用于跟踪 ApplicationLifecycleObserver 是否已注册
+        private var appLifecycleObserverRegistered = false
+
         fun start(context: Context) {
             val intent = Intent(context, LifecycleDemoActivity::class.java)
             context.startActivity(intent)
@@ -83,12 +86,15 @@ class LifecycleDemoActivity : AppCompatActivity() {
         // 初始化ViewModel
         demoViewModel = ViewModelProvider(this)[LifecycleDemoViewModel::class.java]
 
-        // 添加 Application 生命周期观察者
-        ProcessLifecycleOwner.get().lifecycle.addObserver(
-            ApplicationLifecycleObserver { event, tag ->
-                demoViewModel.addEvent(event, tag)
-            }
-        )
+        // 只有在第一次创建时添加 Application 生命周期观察者，防止屏幕旋转时重复注册
+        if (!appLifecycleObserverRegistered) {
+            ProcessLifecycleOwner.get().lifecycle.addObserver(
+                ApplicationLifecycleObserver { event, tag ->
+                    demoViewModel.addEvent(event, tag)
+                }
+            )
+            appLifecycleObserverRegistered = true
+        }
 
         // 添加 Activity 生命周期观察者
         lifecycle.addObserver(lifecycleObserver)
@@ -122,6 +128,11 @@ class LifecycleDemoActivity : AppCompatActivity() {
         // 移除生命周期观察者
         lifecycle.removeObserver(lifecycleObserver)
     }
+
+    override fun onRestart() {
+        super.onRestart()
+        Log.i(TAG, "onRestart")
+    }
 }
 
 // 生命周期观察者示例
@@ -129,6 +140,14 @@ class DemoLifecycleObserver : LifecycleEventObserver {
     private val TAG = "DemoLifecycleObserver"
 
     override fun onStateChanged(source: LifecycleOwner, event: Lifecycle.Event) {
+        // 这里之所以无法区分 onRestart 和 onStart 是因为 Jetpack Lifecycle 使用的是简化的生命周期模型
+        // ON_CREATE
+        // ON_START
+        // ON_RESUME
+        // ON_PAUSE
+        // ON_STOP
+        // ON_DESTROY
+        // ON_ANY
         Log.d(TAG, "Lifecycle Event: $event")
     }
 }

@@ -40,10 +40,10 @@ import retrofit2.converter.gson.GsonConverterFactory
  * Android 学习宝典 程序入口
  */
 class MainActivity : AppCompatActivity() {
-    val TAG = "MainActivity"
+    private val TAG = "MainActivity"
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Log.i(TAG, Gson().toJson(savedInstanceState))
+        Log.i(TAG, "savedInstanceState: ${Gson().toJson(savedInstanceState)}")
         Log.i(TAG, "onCreate")
 
         // 设置透明状态栏，实现沉浸式效果
@@ -120,6 +120,21 @@ class MainActivity : AppCompatActivity() {
             }
         })
         Log.i(TAG, "onResume")
+    }
+
+    override fun onStop() {
+        super.onStop()
+        Log.i(TAG, "onStop")
+    }
+
+    override fun onPause() {
+        super.onPause()
+        Log.i(TAG, "onPause")
+    }
+
+    override fun onStart() {
+        super.onStart()
+        Log.i(TAG, "onStart")
     }
 
     override fun onRestart() {

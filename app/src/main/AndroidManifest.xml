@@ -28,12 +28,13 @@
         <activity android:name=".PointerTestActivity" />
         <activity android:name=".problem.GlideProblemActivity" />
         <activity android:name=".ViewTouchActivity" />
+        <activity android:name=".DrawActivity" />
         <activity android:name=".ui.screens.ChatDemoActivity" />
         <activity android:name=".ui.screens.ChatPageActivity" />
         <activity
             android:name=".ui.screens.LifecycleDemoActivity"
             android:exported="false" />
-        <activity 
+        <activity
             android:name=".LeakDemoActivity"
             android:exported="false"
             android:label="内存泄漏演示" />
@@ -41,6 +42,10 @@
             android:name=".ImageScaleActivity"
             android:exported="true"
             android:label="图片裁切拉伸演示" />
+        <activity
+            android:name=".ui.screens.FlowDemoActivity"
+            android:exported="false"
+            android:label="Kotlin Flow 学习" />
     </application>
 
 </manifest>

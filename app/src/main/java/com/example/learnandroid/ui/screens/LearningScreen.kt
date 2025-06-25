@@ -11,6 +11,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.learnandroid.DrawActivity
 import com.example.learnandroid.PointerTestActivity
 import com.example.learnandroid.ViewTouchActivity
 import com.example.learnandroid.problem.GlideProblemActivity
@@ -58,6 +59,15 @@ fun LearningScreen() {
             "玩转 Fragment",
             "详细全面学习 Android Fragment 组件的使用"
         ) { LifecycleDemoActivity.start(context) },
+        LearningItem(
+            "自定义 View",
+            "学习自定义 View 的 Demo"
+        ) { DrawActivity.start(context) },
+        LearningItem(
+            "Kotlin Flow",
+            "详细彻底学习 Kotlin Flow 的各种用法和特性"
+        ) { FlowDemoActivity.start(context) }
+
     )
 
     Column(modifier = Modifier.fillMaxSize()) {
