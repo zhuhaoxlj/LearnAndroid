@@ -38,6 +38,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.core.view.WindowCompat
+import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.LifecycleOwner
@@ -60,7 +61,7 @@ import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
 
-class LifecycleDemoActivity : AppCompatActivity() {
+class LifecycleDemoActivity : FragmentActivity() {
 
     private val TAG = "LifecycleDemoActivity"
     private lateinit var demoViewModel: LifecycleDemoViewModel
@@ -213,7 +214,7 @@ fun LifecycleDemoScreenPreview() {
 }
 
 @Composable
-fun LifecycleDemoScreen(viewModel: LifecycleDemoViewModel, lifecycle: Lifecycle, activity: AppCompatActivity) {
+fun LifecycleDemoScreen(viewModel: LifecycleDemoViewModel, lifecycle: Lifecycle, activity: FragmentActivity) {
     val lifecycleEvents by viewModel.lifecycleEvents.collectAsState(initial = listOf())
     val currentState = remember { mutableStateOf(lifecycle.currentState.name) }
     val showDialog = remember { mutableStateOf(false) }

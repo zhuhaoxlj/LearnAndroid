@@ -46,6 +46,10 @@
             android:name=".ui.screens.FlowDemoActivity"
             android:exported="false"
             android:label="Kotlin Flow 学习" />
+        <activity
+            android:name=".ui.screens.ViewModelDemoActivity"
+            android:exported="false"
+            android:label="ViewModel Demo" />
     </application>
 
 </manifest>

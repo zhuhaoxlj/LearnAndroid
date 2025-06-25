@@ -66,8 +66,13 @@ fun LearningScreen() {
         LearningItem(
             "Kotlin Flow",
             "详细彻底学习 Kotlin Flow 的各种用法和特性"
-        ) { FlowDemoActivity.start(context) }
-
+        ) { FlowDemoActivity.start(context) },
+        LearningItem(
+            "Kotlin ViewModel",
+            "学习 ViewModel 的用法"
+        ) {
+            ViewModelDemoActivity.start(context)
+        }
     )
 
     Column(modifier = Modifier.fillMaxSize()) {
